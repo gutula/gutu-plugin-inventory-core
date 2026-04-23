@@ -54,6 +54,11 @@ Owns physical stock, reservations, transfers, and reconciliation state so wareho
 | Field | Value |
 | --- | --- |
 | Depends On | `auth-core`, `org-tenant-core`, `role-policy-core`, `audit-core`, `workflow-core`, `product-catalog-core`, `traceability-core` |
+| Recommended Plugins | `sales-core`, `procurement-core`, `accounting-core` |
+| Capability Enhancing | `manufacturing-core`, `quality-core`, `pos-core`, `support-service-core` |
+| Integration Only | `business-portals-core` |
+| Suggested Packs | `sector-ecommerce`, `sector-healthcare`, `sector-manufacturing`, `sector-retail`, `sector-trading-distribution` |
+| Standalone Supported | Yes |
 | Requested Capabilities | `ui.register.admin`, `api.rest.mount`, `data.write.inventory`, `events.publish.inventory` |
 | Provides Capabilities | `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers` |
 | Owns Data | `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers`, `inventory.reconciliation` |

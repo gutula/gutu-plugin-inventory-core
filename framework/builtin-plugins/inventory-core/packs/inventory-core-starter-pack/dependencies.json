@@ -9,6 +9,28 @@
     "product-catalog-core",
     "traceability-core"
   ],
+  "recommendedPlugins": [
+    "sales-core",
+    "procurement-core",
+    "accounting-core"
+  ],
+  "capabilityEnhancingPlugins": [
+    "manufacturing-core",
+    "quality-core",
+    "pos-core",
+    "support-service-core"
+  ],
+  "integrationOnlyPlugins": [
+    "business-portals-core"
+  ],
+  "suggestedPacks": [
+    "sector-ecommerce",
+    "sector-healthcare",
+    "sector-manufacturing",
+    "sector-retail",
+    "sector-trading-distribution"
+  ],
+  "standaloneSupported": true,
   "requiredCapabilities": [
     "ui.register.admin",
     "api.rest.mount",

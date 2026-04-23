@@ -61,11 +61,26 @@ This tier is justified because unit coverage exists, contract coverage exists, i
 | Manifest ID | `inventory-core` |
 | Repo | [gutu-plugin-inventory-core](https://github.com/gutula/gutu-plugin-inventory-core) |
 | Depends On | `auth-core`, `org-tenant-core`, `role-policy-core`, `audit-core`, `workflow-core`, `product-catalog-core`, `traceability-core` |
+| Recommended Plugins | `sales-core`, `procurement-core`, `accounting-core` |
+| Capability Enhancing | `manufacturing-core`, `quality-core`, `pos-core`, `support-service-core` |
+| Integration Only | `business-portals-core` |
+| Suggested Packs | `sector-ecommerce`, `sector-healthcare`, `sector-manufacturing`, `sector-retail`, `sector-trading-distribution` |
+| Standalone Supported | Yes |
 | Requested Capabilities | `ui.register.admin`, `api.rest.mount`, `data.write.inventory`, `events.publish.inventory` |
 | Provided Capabilities | `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers` |
 | Runtime | bun>=1.3.12 |
 | Database | postgres, sqlite |
 | Integration Model | Actions+Resources+Jobs+Workflows+UI |
+
+## Installation Guidance
+
+- Required plugins: `auth-core`, `org-tenant-core`, `role-policy-core`, `audit-core`, `workflow-core`, `product-catalog-core`, `traceability-core`
+- Recommended plugins: `sales-core`, `procurement-core`, `accounting-core`
+- Capability-enhancing plugins: `manufacturing-core`, `quality-core`, `pos-core`, `support-service-core`
+- Integration-only plugins: `business-portals-core`
+- Suggested packs: `sector-ecommerce`, `sector-healthcare`, `sector-manufacturing`, `sector-retail`, `sector-trading-distribution`
+- Standalone supported: yes
+- Treat this as the physical stock truth boundary; pair with Accounting for valuation and with Sales or Procurement for demand and supply execution.
 
 ## Capability Matrix
 

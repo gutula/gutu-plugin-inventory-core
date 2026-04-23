@@ -60,9 +60,78 @@ export default definePackage({
       "packageId": "traceability-core",
       "class": "required",
       "rationale": "Required for Inventory Core to keep its boundary governed and explicit."
+    },
+    {
+      "packageId": "sales-core",
+      "class": "optional",
+      "rationale": "Recommended with Inventory Core for smoother production adoption and operator experience."
+    },
+    {
+      "packageId": "procurement-core",
+      "class": "optional",
+      "rationale": "Recommended with Inventory Core for smoother production adoption and operator experience."
+    },
+    {
+      "packageId": "accounting-core",
+      "class": "optional",
+      "rationale": "Recommended with Inventory Core for smoother production adoption and operator experience."
+    },
+    {
+      "packageId": "manufacturing-core",
+      "class": "capability-enhancing",
+      "rationale": "Improves Inventory Core with deeper downstream automation, visibility, or workflow coverage."
+    },
+    {
+      "packageId": "quality-core",
+      "class": "capability-enhancing",
+      "rationale": "Improves Inventory Core with deeper downstream automation, visibility, or workflow coverage."
+    },
+    {
+      "packageId": "pos-core",
+      "class": "capability-enhancing",
+      "rationale": "Improves Inventory Core with deeper downstream automation, visibility, or workflow coverage."
+    },
+    {
+      "packageId": "support-service-core",
+      "class": "capability-enhancing",
+      "rationale": "Improves Inventory Core with deeper downstream automation, visibility, or workflow coverage."
+    },
+    {
+      "packageId": "business-portals-core",
+      "class": "integration-only",
+      "rationale": "Only needed when Inventory Core must exchange data or actions with adjacent or external surfaces."
     }
   ],
-  "optionalWith": [],
+  "recommendedPlugins": [
+    "sales-core",
+    "procurement-core",
+    "accounting-core"
+  ],
+  "capabilityEnhancingPlugins": [
+    "manufacturing-core",
+    "quality-core",
+    "pos-core",
+    "support-service-core"
+  ],
+  "integrationOnlyPlugins": [
+    "business-portals-core"
+  ],
+  "suggestedPacks": [
+    "sector-ecommerce",
+    "sector-healthcare",
+    "sector-manufacturing",
+    "sector-retail",
+    "sector-trading-distribution"
+  ],
+  "standaloneSupported": true,
+  "installNotes": [
+    "Treat this as the physical stock truth boundary; pair with Accounting for valuation and with Sales or Procurement for demand and supply execution."
+  ],
+  "optionalWith": [
+    "sales-core",
+    "procurement-core",
+    "accounting-core"
+  ],
   "conflictsWith": [],
   "providesCapabilities": [
     "inventory.stock-ledger",
