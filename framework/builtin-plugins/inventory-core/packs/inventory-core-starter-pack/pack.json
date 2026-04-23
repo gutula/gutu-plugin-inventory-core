@@ -1,0 +1,24 @@
+{
+  "packType": "starter-pack",
+  "name": "inventory-core-starter-pack",
+  "version": "0.1.0",
+  "publisher": "gutula",
+  "platformVersion": ">=0.1.0 <1.0.0",
+  "pluginConstraints": {
+    "inventory-core": "^0.1.0"
+  },
+  "dependsOnPacks": [],
+  "mergePolicy": {
+    "settings": "merge",
+    "workflows": "replace",
+    "views": "patch",
+    "masters": "upsert"
+  },
+  "trustTier": "internal-signed",
+  "compatibilityChannel": "next",
+  "dryRunSupported": true,
+  "rollbackStrategy": "inverse-patch",
+  "environmentScope": "sector",
+  "signaturesFile": "signatures.json",
+  "dependenciesFile": "dependencies.json"
+}

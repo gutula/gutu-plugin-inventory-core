@@ -1,0 +1,9 @@
+{
+  "workspace": "inventory",
+  "route": "/admin/business/inventory",
+  "pageTitle": "Inventory Control Room",
+  "defaultRecordState": "draft",
+  "defaultApprovalState": "pending",
+  "defaultPostingState": "unposted",
+  "defaultFulfillmentState": "none"
+}

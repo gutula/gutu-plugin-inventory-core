@@ -1,0 +1,28 @@
+{
+  "packageId": "inventory-core",
+  "packName": "inventory-core-starter-pack",
+  "expectedActions": [
+    "inventory.receipts.record",
+    "inventory.reservations.allocate",
+    "inventory.transfers.request"
+  ],
+  "expectedResources": [
+    "inventory.stock-ledger",
+    "inventory.reservations",
+    "inventory.transfers"
+  ],
+  "expectedReports": [
+    "Stock Ledger",
+    "Stock Balance",
+    "Projected Quantity",
+    "Batch-Wise Balance History",
+    "Warehouse Wise Item Balance Age and Value",
+    "BOM Stock Report"
+  ],
+  "expectedExceptionQueues": [
+    "negative-stock-blocks",
+    "cycle-count-differences",
+    "transfer-discrepancies",
+    "valuation-reposting-review"
+  ]
+}

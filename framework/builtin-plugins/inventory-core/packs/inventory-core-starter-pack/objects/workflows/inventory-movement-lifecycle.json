@@ -1,0 +1,9 @@
+{
+  "workflowId": "inventory-movement-lifecycle",
+  "actors": [
+    "warehouse",
+    "approver",
+    "controller"
+  ],
+  "description": "Request, approve, execute, reconcile, and close stock movement state."
+}

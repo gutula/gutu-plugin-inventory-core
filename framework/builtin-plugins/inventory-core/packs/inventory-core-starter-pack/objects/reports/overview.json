@@ -1,0 +1,23 @@
+{
+  "pluginId": "inventory-core",
+  "reports": [
+    "Stock Ledger",
+    "Stock Balance",
+    "Projected Quantity",
+    "Batch-Wise Balance History",
+    "Warehouse Wise Item Balance Age and Value",
+    "BOM Stock Report"
+  ],
+  "exceptionQueues": [
+    "negative-stock-blocks",
+    "cycle-count-differences",
+    "transfer-discrepancies",
+    "valuation-reposting-review"
+  ],
+  "operationalScenarios": [
+    "receipt-to-putaway",
+    "reservation-to-pick-pack-ship",
+    "transfer-in-transit",
+    "cycle-count-and-recount"
+  ]
+}

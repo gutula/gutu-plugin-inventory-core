@@ -1,0 +1,11 @@
+{
+  "automationId": "inventory-core.reconciliation.default",
+  "trigger": "exception-record-opened",
+  "action": "inventory.reconciliation.run",
+  "queues": [
+    "negative-stock-blocks",
+    "cycle-count-differences",
+    "transfer-discrepancies",
+    "valuation-reposting-review"
+  ]
+}
