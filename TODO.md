@@ -4,7 +4,7 @@
 
 ## Shipped Now
 
-- Exports 3 governed actions: `inventory.receipts.record`, `inventory.reservations.allocate`, `inventory.transfers.request`.
+- Exports 7 governed actions: `inventory.receipts.record`, `inventory.reservations.allocate`, `inventory.transfers.request`, `inventory.receipts.hold`, `inventory.receipts.release`, `inventory.receipts.amend`, `inventory.receipts.reverse`.
 - Owns 3 resource contracts: `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers`.
 - Publishes 2 job definitions with explicit queue and retry policy metadata.
 - Publishes 1 workflow definition with state-machine descriptions and mandatory steps.
@@ -18,7 +18,7 @@
 
 ## Current Gaps
 
-- Repo-local documentation verification entrypoints were missing before this pass and need to stay green as the repo evolves.
+- No additional gaps were identified beyond the plugin’s stated non-goals.
 
 ## Recommended Next
 

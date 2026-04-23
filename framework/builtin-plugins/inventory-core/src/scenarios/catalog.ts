@@ -6,7 +6,11 @@ export const scenarioDefinitions = [
     "actionIds": [
       "inventory.receipts.record",
       "inventory.reservations.allocate",
-      "inventory.transfers.request"
+      "inventory.transfers.request",
+      "inventory.receipts.hold",
+      "inventory.receipts.release",
+      "inventory.receipts.amend",
+      "inventory.receipts.reverse"
     ],
     "downstreamTargets": {
       "create": [],
@@ -25,7 +29,11 @@ export const scenarioDefinitions = [
     "actionIds": [
       "inventory.receipts.record",
       "inventory.reservations.allocate",
-      "inventory.transfers.request"
+      "inventory.transfers.request",
+      "inventory.receipts.hold",
+      "inventory.receipts.release",
+      "inventory.receipts.amend",
+      "inventory.receipts.reverse"
     ],
     "downstreamTargets": {
       "create": [],
@@ -44,7 +52,11 @@ export const scenarioDefinitions = [
     "actionIds": [
       "inventory.receipts.record",
       "inventory.reservations.allocate",
-      "inventory.transfers.request"
+      "inventory.transfers.request",
+      "inventory.receipts.hold",
+      "inventory.receipts.release",
+      "inventory.receipts.amend",
+      "inventory.receipts.reverse"
     ],
     "downstreamTargets": {
       "create": [],
@@ -63,7 +75,11 @@ export const scenarioDefinitions = [
     "actionIds": [
       "inventory.receipts.record",
       "inventory.reservations.allocate",
-      "inventory.transfers.request"
+      "inventory.transfers.request",
+      "inventory.receipts.hold",
+      "inventory.receipts.release",
+      "inventory.receipts.amend",
+      "inventory.receipts.reverse"
     ],
     "downstreamTargets": {
       "create": [],

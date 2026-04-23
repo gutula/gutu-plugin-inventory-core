@@ -9,6 +9,10 @@
 | inventory.receipts.record | Record Inventory Receipt |
 | inventory.reservations.allocate | Allocate Reservation |
 | inventory.transfers.request | Request Stock Transfer |
+| inventory.receipts.hold | Place Record On Hold |
+| inventory.receipts.release | Release Record Hold |
+| inventory.receipts.amend | Amend Record |
+| inventory.receipts.reverse | Reverse Record |
 | inventory.projections.refresh | Job definition queued on `inventory-projections`. |
 | inventory.reconciliation.run | Job definition queued on `inventory-reconciliation`. |
 | inventory-movement-lifecycle | Request, approve, execute, reconcile, and close stock movement state. |

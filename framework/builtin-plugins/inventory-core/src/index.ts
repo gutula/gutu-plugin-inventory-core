@@ -1,12 +1,16 @@
 export {
-  advancePrimaryRecordAction,
+  recordInventoryReceiptAction,
+  allocateReservationAction,
+  requestStockTransferAction,
+  placeRecordOnHoldAction,
+  releaseRecordHoldAction,
+  amendRecordAction,
+  reverseRecordAction,
   businessActions,
-  createPrimaryRecordAction,
-  reconcilePrimaryRecordAction
 } from "./actions/default.action";
 export { domainCatalog } from "./domain/catalog";
 export { exceptionQueueDefinitions } from "./exceptions/catalog";
-export { businessFlowDefinitions, recordInventoryReceipt, allocateReservation, requestStockTransfer } from "./flows/catalog";
+export { businessFlowDefinitions, recordInventoryReceipt, allocateReservation, requestStockTransfer, placeRecordOnHold, releaseRecordHold, amendRecord, reverseRecord } from "./flows/catalog";
 export {
   BusinessExceptionResource,
   BusinessPrimaryResource,
@@ -17,14 +21,18 @@ export { reportDefinitions } from "./reports/catalog";
 export { scenarioDefinitions } from "./scenarios/catalog";
 export {
   advancePrimaryRecordInputSchema,
+  amendPrimaryRecordInputSchema,
   approvalStateSchema,
   createPrimaryRecordInputSchema,
   exceptionRecordSchema,
   fulfillmentStateSchema,
+  placePrimaryRecordOnHoldInputSchema,
   postingStateSchema,
   primaryRecordSchema,
   reconcilePrimaryRecordInputSchema,
   recordStateSchema,
+  releasePrimaryRecordHoldInputSchema,
+  reversePrimaryRecordInputSchema,
   secondaryRecordSchema,
   type ExceptionRecord,
   type PrimaryRecord,
@@ -44,6 +52,7 @@ export {
 } from "./sqlite";
 export {
   advancePrimaryRecord,
+  amendPrimaryRecord,
   createPrimaryRecord,
   failPendingDownstreamItem,
   getBusinessOverview,
@@ -54,9 +63,12 @@ export {
   listExceptionRecords,
   listPrimaryRecords,
   listSecondaryRecords,
+  placePrimaryRecordOnHold,
   replayDeadLetter,
+  releasePrimaryRecordHold,
   resolvePendingDownstreamItem,
-  reconcilePrimaryRecord
+  reconcilePrimaryRecord,
+  reversePrimaryRecord
 } from "./services/main.service";
 export { settingsSurfaceDefinitions } from "./settings/catalog";
 export { jobDefinitionKeys, jobDefinitions } from "./jobs/catalog";

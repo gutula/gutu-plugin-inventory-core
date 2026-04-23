@@ -26,7 +26,7 @@ Warehouse truth, stock ledger state, reservation visibility, transfer execution,
 
 Owns physical stock, reservations, transfers, and reconciliation state so warehouse truth remains explicit and durable.
 
-- Exports 3 governed actions: `inventory.receipts.record`, `inventory.reservations.allocate`, `inventory.transfers.request`.
+- Exports 7 governed actions: `inventory.receipts.record`, `inventory.reservations.allocate`, `inventory.transfers.request`, `inventory.receipts.hold`, `inventory.receipts.release`, `inventory.receipts.amend`, `inventory.receipts.reverse`.
 - Owns 3 resource contracts: `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers`.
 - Publishes 2 job definitions with explicit queue and retry policy metadata.
 - Publishes 1 workflow definition with state-machine descriptions and mandatory steps.
@@ -71,7 +71,7 @@ This tier is justified because unit coverage exists, contract coverage exists, i
 
 | Surface | Count | Details |
 | --- | --- | --- |
-| Actions | 3 | `inventory.receipts.record`, `inventory.reservations.allocate`, `inventory.transfers.request` |
+| Actions | 7 | `inventory.receipts.record`, `inventory.reservations.allocate`, `inventory.transfers.request`, `inventory.receipts.hold`, `inventory.receipts.release`, `inventory.receipts.amend`, `inventory.receipts.reverse` |
 | Resources | 3 | `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers` |
 | Jobs | 2 | `inventory.projections.refresh`, `inventory.reconciliation.run` |
 | Workflows | 1 | `inventory-movement-lifecycle` |
@@ -96,10 +96,10 @@ bun run docs:check
 ```
 
 ```ts
-import { manifest, createPrimaryRecordAction, BusinessPrimaryResource, jobDefinitions, workflowDefinitions, adminContributions, uiSurface } from "@plugins/inventory-core";
+import { manifest, recordInventoryReceiptAction, BusinessPrimaryResource, jobDefinitions, workflowDefinitions, adminContributions, uiSurface } from "@plugins/inventory-core";
 
 console.log(manifest.id);
-console.log(createPrimaryRecordAction.id);
+console.log(recordInventoryReceiptAction.id);
 console.log(BusinessPrimaryResource.id);
 ```
 

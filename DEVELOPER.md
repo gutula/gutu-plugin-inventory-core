@@ -71,6 +71,10 @@ Owns physical stock, reservations, transfers, and reconciliation state so wareho
 | Action | `inventory.receipts.record` | Permission: `inventory.stock-ledger.write` | Record Inventory Receipt<br>Idempotent<br>Audited |
 | Action | `inventory.reservations.allocate` | Permission: `inventory.reservations.write` | Allocate Reservation<br>Non-idempotent<br>Audited |
 | Action | `inventory.transfers.request` | Permission: `inventory.transfers.write` | Request Stock Transfer<br>Non-idempotent<br>Audited |
+| Action | `inventory.receipts.hold` | Permission: `inventory.stock-ledger.write` | Place Record On Hold<br>Non-idempotent<br>Audited |
+| Action | `inventory.receipts.release` | Permission: `inventory.stock-ledger.write` | Release Record Hold<br>Non-idempotent<br>Audited |
+| Action | `inventory.receipts.amend` | Permission: `inventory.stock-ledger.write` | Amend Record<br>Non-idempotent<br>Audited |
+| Action | `inventory.receipts.reverse` | Permission: `inventory.stock-ledger.write` | Reverse Record<br>Non-idempotent<br>Audited |
 | Resource | `inventory.stock-ledger` | Portal disabled | Inventory-ledger records for on-hand, in-transit, and quality-segregated stock.<br>Purpose: Keep physical truth authoritative inside the inventory boundary.<br>Admin auto-CRUD enabled<br>Fields: `title`, `recordState`, `approvalState`, `postingState`, `fulfillmentState`, `updatedAt` |
 | Resource | `inventory.reservations` | Portal disabled | Reservation and allocation records linked to downstream demand.<br>Purpose: Expose promise and allocation state without letting upstream demand mutate stock balances directly.<br>Admin auto-CRUD enabled<br>Fields: `label`, `status`, `requestedAction`, `updatedAt` |
 | Resource | `inventory.transfers` | Portal disabled | Internal transfer and movement records with discrepancy visibility.<br>Purpose: Make multi-branch and multi-warehouse movement state durable and auditable.<br>Admin auto-CRUD enabled<br>Fields: `severity`, `status`, `reasonCode`, `updatedAt` |
@@ -156,11 +160,11 @@ stateDiagram-v2
 ### 1. Host wiring
 
 ```ts
-import { manifest, createPrimaryRecordAction, BusinessPrimaryResource, jobDefinitions, workflowDefinitions, adminContributions, uiSurface } from "@plugins/inventory-core";
+import { manifest, recordInventoryReceiptAction, BusinessPrimaryResource, jobDefinitions, workflowDefinitions, adminContributions, uiSurface } from "@plugins/inventory-core";
 
 export const pluginSurface = {
   manifest,
-  createPrimaryRecordAction,
+  recordInventoryReceiptAction,
   BusinessPrimaryResource,
   jobDefinitions,
   workflowDefinitions,
@@ -174,10 +178,10 @@ Use this pattern when your host needs to register the plugin’s declared export
 ### 2. Action-first orchestration
 
 ```ts
-import { manifest, createPrimaryRecordAction } from "@plugins/inventory-core";
+import { manifest, recordInventoryReceiptAction } from "@plugins/inventory-core";
 
 console.log("plugin", manifest.id);
-console.log("action", createPrimaryRecordAction.id);
+console.log("action", recordInventoryReceiptAction.id);
 ```
 
 - Prefer action IDs as the stable integration boundary.
@@ -219,7 +223,7 @@ console.log("action", createPrimaryRecordAction.id);
 
 ### Current truth
 
-- Exports 3 governed actions: `inventory.receipts.record`, `inventory.reservations.allocate`, `inventory.transfers.request`.
+- Exports 7 governed actions: `inventory.receipts.record`, `inventory.reservations.allocate`, `inventory.transfers.request`, `inventory.receipts.hold`, `inventory.receipts.release`, `inventory.receipts.amend`, `inventory.receipts.reverse`.
 - Owns 3 resource contracts: `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers`.
 - Publishes 2 job definitions with explicit queue and retry policy metadata.
 - Publishes 1 workflow definition with state-machine descriptions and mandatory steps.
@@ -233,7 +237,7 @@ console.log("action", createPrimaryRecordAction.id);
 
 ### Current gaps
 
-- Repo-local documentation verification entrypoints were missing before this pass and need to stay green as the repo evolves.
+- No extra gaps were discovered beyond the plugin’s declared boundaries.
 
 ### Recommended next
 

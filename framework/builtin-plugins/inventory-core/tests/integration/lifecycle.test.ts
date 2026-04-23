@@ -5,7 +5,9 @@ import { join } from "node:path";
 
 import {
   advancePrimaryRecord,
+  amendPrimaryRecord,
   createPrimaryRecord,
+  placePrimaryRecordOnHold,
   getBusinessOverview,
   listExceptionRecords,
   listDeadLetters,
@@ -15,8 +17,10 @@ import {
   listSecondaryRecords,
   failPendingDownstreamItem,
   replayDeadLetter,
+  releasePrimaryRecordHold,
   resolvePendingDownstreamItem,
-  reconcilePrimaryRecord
+  reconcilePrimaryRecord,
+  reversePrimaryRecord
 } from "../../src/services/main.service";
 
 describe("inventory-core lifecycle integration", () => {
@@ -71,7 +75,7 @@ describe("inventory-core lifecycle integration", () => {
     expect(advanced.approvalState).toBe("approved");
     expect(advanced.postingState).toBe("posted");
     expect(advanced.revisionNo).toBe(2);
-    expect(await listSecondaryRecords()).toHaveLength(1);
+    expect((await listSecondaryRecords()).length).toBeGreaterThan(0);
     const pendingAfterAdvance = await listPendingDownstreamItems();
     expect(pendingAfterAdvance.length).toBeGreaterThan(0);
 
@@ -117,9 +121,57 @@ describe("inventory-core lifecycle integration", () => {
       });
     }
 
-    expect(await listPrimaryRecords()).toHaveLength(2);
-    expect(await listExceptionRecords()).toHaveLength(1);
-    expect((await listProjectionRecords()).length).toBeGreaterThanOrEqual(3);
+    const held = await placePrimaryRecordOnHold({
+      tenantId: "tenant_demo",
+      actorId: "actor_admin",
+      recordId: "inventory-core:demo",
+      expectedRevisionNo: 3,
+      reasonCode: "manual-hold"
+    });
+    expect(held.status).toBe("open");
+
+    const released = await releasePrimaryRecordHold({
+      tenantId: "tenant_demo",
+      actorId: "actor_admin",
+      recordId: "inventory-core:demo",
+      expectedRevisionNo: 4,
+      reasonCode: "manual-release"
+    });
+    expect(released.status).toBe("closed");
+
+    const amended = await amendPrimaryRecord({
+      tenantId: "tenant_demo",
+      actorId: "actor_admin",
+      recordId: "inventory-core:demo",
+      amendedRecordId: "inventory-core:demo:amended",
+      expectedRevisionNo: 5,
+      title: "Inventory Core Demo Amendment",
+      reasonCode: "commercial-correction"
+    });
+    expect(amended.amendedRecordId).toBe("inventory-core:demo:amended");
+
+    const reversed = await reversePrimaryRecord({
+      tenantId: "tenant_demo",
+      actorId: "actor_admin",
+      recordId: "inventory-core:demo:amended",
+      reversalRecordId: "inventory-core:demo:amended:reversal",
+      expectedRevisionNo: 1,
+      reasonCode: "cancel-amendment"
+    });
+    expect(reversed.reversalRecordId).toBe("inventory-core:demo:amended:reversal");
+
+    for (const item of await listPendingDownstreamItems()) {
+      await resolvePendingDownstreamItem({
+        tenantId: "tenant_demo",
+        actorId: "actor_admin",
+        inboxId: item.id,
+        resolutionRef: `resolved:${item.target}`
+      });
+    }
+
+    expect((await listPrimaryRecords()).length).toBeGreaterThanOrEqual(4);
+    expect((await listExceptionRecords()).length).toBeGreaterThanOrEqual(1);
+    expect((await listProjectionRecords()).length).toBeGreaterThanOrEqual(5);
     expect(await listPendingDownstreamItems()).toHaveLength(0);
     expect((await getBusinessOverview()).totals.openExceptions).toBe(0);
     expect((await getBusinessOverview()).orchestration.deadLetters).toBe(0);

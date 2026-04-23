@@ -33,7 +33,7 @@ export const secondaryRecordSchema = z.object({
   tenantId: z.string().min(2),
   primaryRecordId: z.string().min(2),
   label: z.string().min(2),
-  status: z.enum(["requested", "approved", "in-progress", "completed", "closed"]),
+  status: z.enum(["requested", "approved", "in-progress", "completed", "failed", "closed"]),
   requestedAction: z.string().min(2),
   reasonCode: z.string().nullable(),
   correlationId: z.string().min(2),
@@ -81,6 +81,43 @@ export const advancePrimaryRecordInputSchema = z.object({
   fulfillmentState: fulfillmentStateSchema.optional(),
   downstreamRef: z.string().min(2).optional(),
   reasonCode: z.string().min(2).optional()
+});
+
+export const placePrimaryRecordOnHoldInputSchema = z.object({
+  tenantId: z.string().min(2),
+  actorId: z.string().min(2),
+  recordId: z.string().min(2),
+  expectedRevisionNo: z.number().int().positive().optional(),
+  reasonCode: z.string().min(2)
+});
+
+export const releasePrimaryRecordHoldInputSchema = z.object({
+  tenantId: z.string().min(2),
+  actorId: z.string().min(2),
+  recordId: z.string().min(2),
+  expectedRevisionNo: z.number().int().positive().optional(),
+  reasonCode: z.string().min(2).optional()
+});
+
+export const amendPrimaryRecordInputSchema = z.object({
+  tenantId: z.string().min(2),
+  actorId: z.string().min(2),
+  recordId: z.string().min(2),
+  amendedRecordId: z.string().min(2),
+  expectedRevisionNo: z.number().int().positive().optional(),
+  title: z.string().min(2).optional(),
+  amountMinor: z.number().int().optional(),
+  effectiveAt: z.string().min(2).optional(),
+  reasonCode: z.string().min(2)
+});
+
+export const reversePrimaryRecordInputSchema = z.object({
+  tenantId: z.string().min(2),
+  actorId: z.string().min(2),
+  recordId: z.string().min(2),
+  reversalRecordId: z.string().min(2),
+  expectedRevisionNo: z.number().int().positive().optional(),
+  reasonCode: z.string().min(2)
 });
 
 export const reconcilePrimaryRecordInputSchema = z.object({

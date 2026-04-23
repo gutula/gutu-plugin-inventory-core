@@ -3,10 +3,14 @@ import {
   createBusinessOrchestrationState,
   createBusinessPluginService,
   type BusinessAdvancePrimaryRecordInput,
+  type BusinessAmendPrimaryRecordInput,
   type BusinessCreatePrimaryRecordInput,
   type BusinessFailPendingDownstreamItemInput,
+  type BusinessPlacePrimaryRecordOnHoldInput,
   type BusinessReconcilePrimaryRecordInput,
+  type BusinessReleasePrimaryRecordHoldInput,
   type BusinessReplayDeadLetterInput,
+  type BusinessReversePrimaryRecordInput,
   type BusinessResolvePendingDownstreamItemInput
 } from "@platform/business-runtime";
 
@@ -14,7 +18,11 @@ import { type ExceptionRecord, type PrimaryRecord, type SecondaryRecord } from "
 
 export type CreatePrimaryRecordInput = BusinessCreatePrimaryRecordInput;
 export type AdvancePrimaryRecordInput = BusinessAdvancePrimaryRecordInput;
+export type PlacePrimaryRecordOnHoldInput = BusinessPlacePrimaryRecordOnHoldInput;
+export type ReleasePrimaryRecordHoldInput = BusinessReleasePrimaryRecordHoldInput;
+export type AmendPrimaryRecordInput = BusinessAmendPrimaryRecordInput;
 export type ReconcilePrimaryRecordInput = BusinessReconcilePrimaryRecordInput;
+export type ReversePrimaryRecordInput = BusinessReversePrimaryRecordInput;
 export type ResolvePendingDownstreamItemInput = BusinessResolvePendingDownstreamItemInput;
 export type FailPendingDownstreamItemInput = BusinessFailPendingDownstreamItemInput;
 export type ReplayDeadLetterInput = BusinessReplayDeadLetterInput;
@@ -100,7 +108,11 @@ export const {
   getBusinessOverview,
   createPrimaryRecord,
   advancePrimaryRecord,
+  placePrimaryRecordOnHold,
+  releasePrimaryRecordHold,
+  amendPrimaryRecord,
   reconcilePrimaryRecord,
+  reversePrimaryRecord,
   resolvePendingDownstreamItem,
   failPendingDownstreamItem,
   replayDeadLetter

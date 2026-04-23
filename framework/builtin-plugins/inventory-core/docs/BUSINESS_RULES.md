@@ -9,7 +9,7 @@
 
 ## Lifecycle notes
 
-- This plugin currently exports 3 action(s), 3 resource(s), 2 job definition(s), and 1 workflow definition(s).
+- This plugin currently exports 7 action(s), 3 resource(s), 2 job definition(s), and 1 workflow definition(s).
 - The domain catalog currently tracks 8 owned entity surface(s), 6 report surface(s), and 4 exception queue(s).
 - Durable data behavior is bounded by the declared schema and compatibility contract: postgres, sqlite.
 - Maturity is currently assessed as `Hardened`, which means the documentation and operational promises must stay within that boundary.

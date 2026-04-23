@@ -5,6 +5,10 @@
 - `inventory.receipts.record`: Record Inventory Receipt
 - `inventory.reservations.allocate`: Allocate Reservation
 - `inventory.transfers.request`: Request Stock Transfer
+- `inventory.receipts.hold`: Place Record On Hold
+- `inventory.receipts.release`: Release Record Hold
+- `inventory.receipts.amend`: Amend Record
+- `inventory.receipts.reverse`: Reverse Record
 
 ## Operational scenario matrix
 
@@ -70,6 +74,106 @@ Forbidden shortcuts:
 Request Stock Transfer
 
 Permission: `inventory.transfers.write`
+
+Business purpose: Expose the plugin’s write boundary through a validated, auditable action contract.
+
+Preconditions:
+
+- Caller input must satisfy the action schema exported by the plugin.
+- The caller must satisfy the declared permission and any host-level installation constraints.
+- Integration should honor the action’s non-idempotent semantics.
+
+Side effects:
+
+- Mutates or validates state owned by `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers`.
+- May schedule or describe follow-up background work.
+
+Forbidden shortcuts:
+
+- Do not bypass the action contract with undocumented service mutations in application code.
+- Do not document extra hooks, retries, or lifecycle semantics unless they are explicitly exported here.
+
+
+### `inventory.receipts.hold`
+
+Place Record On Hold
+
+Permission: `inventory.stock-ledger.write`
+
+Business purpose: Expose the plugin’s write boundary through a validated, auditable action contract.
+
+Preconditions:
+
+- Caller input must satisfy the action schema exported by the plugin.
+- The caller must satisfy the declared permission and any host-level installation constraints.
+- Integration should honor the action’s non-idempotent semantics.
+
+Side effects:
+
+- Mutates or validates state owned by `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers`.
+- May schedule or describe follow-up background work.
+
+Forbidden shortcuts:
+
+- Do not bypass the action contract with undocumented service mutations in application code.
+- Do not document extra hooks, retries, or lifecycle semantics unless they are explicitly exported here.
+
+
+### `inventory.receipts.release`
+
+Release Record Hold
+
+Permission: `inventory.stock-ledger.write`
+
+Business purpose: Expose the plugin’s write boundary through a validated, auditable action contract.
+
+Preconditions:
+
+- Caller input must satisfy the action schema exported by the plugin.
+- The caller must satisfy the declared permission and any host-level installation constraints.
+- Integration should honor the action’s non-idempotent semantics.
+
+Side effects:
+
+- Mutates or validates state owned by `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers`.
+- May schedule or describe follow-up background work.
+
+Forbidden shortcuts:
+
+- Do not bypass the action contract with undocumented service mutations in application code.
+- Do not document extra hooks, retries, or lifecycle semantics unless they are explicitly exported here.
+
+
+### `inventory.receipts.amend`
+
+Amend Record
+
+Permission: `inventory.stock-ledger.write`
+
+Business purpose: Expose the plugin’s write boundary through a validated, auditable action contract.
+
+Preconditions:
+
+- Caller input must satisfy the action schema exported by the plugin.
+- The caller must satisfy the declared permission and any host-level installation constraints.
+- Integration should honor the action’s non-idempotent semantics.
+
+Side effects:
+
+- Mutates or validates state owned by `inventory.stock-ledger`, `inventory.reservations`, `inventory.transfers`.
+- May schedule or describe follow-up background work.
+
+Forbidden shortcuts:
+
+- Do not bypass the action contract with undocumented service mutations in application code.
+- Do not document extra hooks, retries, or lifecycle semantics unless they are explicitly exported here.
+
+
+### `inventory.receipts.reverse`
+
+Reverse Record
+
+Permission: `inventory.stock-ledger.write`
 
 Business purpose: Expose the plugin’s write boundary through a validated, auditable action contract.
 
